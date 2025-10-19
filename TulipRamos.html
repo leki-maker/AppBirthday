@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>¡Feliz Cumpleaños!</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: #fdf9f5;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+      position: relative;
+    }
+
+    #intro {
+      text-align: center;
+      font-size: clamp(2rem, 8vw, 4rem);
+      color: #d4307a;
+      animation: fadeIn 2s ease-in-out;
+      z-index: 10;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    #tulip-container {
+      display: none;
+      text-align: center;
+      z-index: 10;
+     /* display: flex;*/
+      flex-direction: column;
+      align-items: center;
+    }
+
+    #personal-message {
+      margin-top: clamp(0.5rem, 2vw, 1rem);
+      font-size: clamp(1.1rem, 4vw, 1.4rem);
+      color: #5a5a5a;
+      font-weight: 500;
+      max-width: 90vw;
+    }
+
+    #color-buttons {
+      margin-top: clamp(1rem, 4vw, 1.5rem);
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: clamp(4px, 2vw, 6px);
+    }
+
+    .color-btn {
+      width: clamp(25px, 8vw, 40px);
+      height: clamp(25px, 8vw, 40px);
+      border: 2px solid #fff;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+      border-radius: 50%;
+      cursor: pointer;
+      outline: none;
+      transition: transform 0.2s;
+    }
+
+    .color-btn:hover {
+      transform: scale(1.2);
+    }
+
+    /* Corazones como partículas */
+    .heart-particle {
+      --c: red;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 12px;
+      aspect-ratio: 1;
+      border: 20px solid transparent;
+      border-image: radial-gradient(var(--c) 69%, #0000 70%) 84.5% / 50%;
+      clip-path: polygon(-42% 0, 50% 91%, 142% 0);
+      pointer-events: none;
+      z-index: 2;
+      opacity: 0;
+      transform-origin: 20px 20px;
+    }
+
+    /* ✅ RAMO: tallos desde un punto común */
+    #bouquet {
+      position: relative;
+      width: clamp(200px, 80vw, 400px);
+      height: clamp(250px, 30vh, 450px);
+      margin-bottom: clamp(1rem, 3vw, 1.2rem);
+    }
+
+    .tulip-single {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform-origin: bottom center;
+      cursor: pointer;
+      transition: transform 0.3s;
+      width: clamp(150px, 35vw, 200px);
+      height: auto;
+      z-index: 1;
+      outline: none;
+    }
+
+    .tulip-single:hover {
+      transform: scale(1.1) translateY(-10px);
+    }
+    .tulip-single,
+    .tulip-single * {
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .tulip-single:focus,
+    .tulip-single:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+    /* Posiciones específicas */
+    .tulip-single.left {
+      transform: translateX(-40%) rotate(-25deg);
+    }
+
+    .tulip-single.center {
+      transform: translateX(-50%) rotate(0deg);
+    }
+
+    .tulip-single.right {
+      transform: translateX(-60%) rotate(25deg);
+    }
+  </style>
+</head>
+<body>
+
+  <div id="intro">¡Feliz Cumpleaños!</div>
+
+  <div id="tulip-container">
+    <div id="bouquet">
+      <!-- Tulipán izquierdo -->
+      <svg class="tulip-single left" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="petalGradient1" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff9ec5" class="grad-top"/>
+            <stop offset="100%" stop-color="#d13a7a" class="grad-bottom"/>
+          </linearGradient>
+        </defs>
+        <path d="M100,150 Q98,220 100,280" fill="none" stroke="#4a7a3f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100,180 Q70,160 80,130 Q90,150 100,180 Z" fill="#5a9a4f"/>
+        <path d="M100,200 Q130,180 120,150 Q110,170 100,200 Z" fill="#5a9a4f"/>
+        <path d="M100,140 Q115,90 100,50 Q85,90 100,140 Z" fill="url(#petalGradient1)" />
+        <path d="M100,140 Q130,100 115,55 Q100,80 100,140 Z" fill="url(#petalGradient1)" />
+        <path d="M100,140 Q70,100 85,55 Q100,80 100,140 Z" fill="url(#petalGradient1)" />
+        <path d="M100,140 Q108,160 100,180 Q92,160 100,140 Z" fill="url(#petalGradient1)" opacity="0.85"/>
+      </svg>
+
+      <!-- Tulipán central -->
+      <svg class="tulip-single center" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="petalGradient2" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff9ec5" class="grad-top"/>
+            <stop offset="100%" stop-color="#d13a7a" class="grad-bottom"/>
+          </linearGradient>
+        </defs>
+        <path d="M100,150 Q98,220 100,280" fill="none" stroke="#4a7a3f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100,180 Q70,160 80,130 Q90,150 100,180 Z" fill="#5a9a4f"/>
+        <path d="M100,200 Q130,180 120,150 Q110,170 100,200 Z" fill="#5a9a4f"/>
+        <path d="M100,140 Q115,90 100,50 Q85,90 100,140 Z" fill="url(#petalGradient2)" />
+        <path d="M100,140 Q130,100 115,55 Q100,80 100,140 Z" fill="url(#petalGradient2)" />
+        <path d="M100,140 Q70,100 85,55 Q100,80 100,140 Z" fill="url(#petalGradient2)" />
+        <path d="M100,140 Q108,160 100,180 Q92,160 100,140 Z" fill="url(#petalGradient2)" opacity="0.85"/>
+      </svg>
+
+      <!-- Tulipán derecho -->
+      <svg class="tulip-single right" viewBox="0 0 200 300" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="petalGradient3" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#ff9ec5" class="grad-top"/>
+            <stop offset="100%" stop-color="#d13a7a" class="grad-bottom"/>
+          </linearGradient>
+        </defs>
+        <path d="M100,150 Q98,220 100,280" fill="none" stroke="#4a7a3f" stroke-width="6" stroke-linecap="round"/>
+        <path d="M100,180 Q70,160 80,130 Q90,150 100,180 Z" fill="#5a9a4f"/>
+        <path d="M100,200 Q130,180 120,150 Q110,170 100,200 Z" fill="#5a9a4f"/>
+        <path d="M100,140 Q115,90 100,50 Q85,90 100,140 Z" fill="url(#petalGradient3)" />
+        <path d="M100,140 Q130,100 115,55 Q100,80 100,140 Z" fill="url(#petalGradient3)" />
+        <path d="M100,140 Q70,100 85,55 Q100,80 100,140 Z" fill="url(#petalGradient3)" />
+        <path d="M100,140 Q108,160 100,180 Q92,160 100,140 Z" fill="url(#petalGradient3)" opacity="0.85"/>
+      </svg>
+    </div>
+
+    <div id="personal-message">Para la chica más linda del mundo</div>
+    <div id="color-buttons"></div>
+  </div>
+
+  <!-- Sonido suave -->
+  <audio id="sparkleSound" preload="auto">
+    <source src="audio/mpeg;base64,SUQzBAAAAAABEVRYWFgAAAAtAAADY29tbWVudABCaWdTb3VuZEJhbmsuY29tIC8gTGFTb25vdGhlcXVlLm9yZwBURU5DAAAAHQAAA1N3aXRjaCBQbHVzIMKpIE5DSCBTb2Z0d2FyZQBUSVQyAAAABgAAAzIyMzUAVFNTRQAAAA8AAANMYXZmNTcuODMuMTAwAAAAAAAAAAAAAAD/80DEAAAAA0gAAAAATEFNRTMuMTAwVVVVVVVVVVVVVUxBTUUzLjEwMFVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQsRbAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVf/zQMSkAAADSAAAAABVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVVV" type="audio/mpeg"/>
+  </audio>
+
+  <script>
+    // ... (el mismo JavaScript que tenías, sin cambios necesarios)
+    const colores = [
+      { nombre: "rojo", top: "#ff6b6b", bottom: "#d13a3a" },
+      { nombre: "rosa", top: "#ff9ec5", bottom: "#d13a7a" },
+      { nombre: "amarillo", top: "#fff176", bottom: "#f1c40f" },
+      { nombre: "morado", top: "#d7bde2", bottom: "#9b59b6" },
+      { nombre: "blanco", top: "#ffffff", bottom: "#e0e0e0" },
+      { nombre: "naranja", top: "#ffcc80", bottom: "#e67e22" }
+    ];
+
+    const COLOR_INICIAL = 1;
+    const HEART_SPEED_MULTIPLIER = 0.2;
+
+    const intro = document.getElementById("intro");
+    const container = document.getElementById("tulip-container");
+    const tulipSvgs = document.querySelectorAll(".tulip-single");
+    const gradTops = document.querySelectorAll(".grad-top");
+    const gradBottoms = document.querySelectorAll(".grad-bottom");
+    const colorButtons = document.getElementById("color-buttons");
+    const sparkleSound = document.getElementById("sparkleSound");
+
+    let audioAllowed = false;
+    function unlockAudio() {
+      if (!audioAllowed) {
+        sparkleSound.play().then(() => {
+          sparkleSound.pause();
+          sparkleSound.currentTime = 0;
+          audioAllowed = true;
+        }).catch(() => {});
+      }
+    }
+    document.body.addEventListener("click", unlockAudio, { once: true });
+
+    const heartPool = [];
+    const maxHearts = 100;
+
+    class HeartParticle {
+      constructor(x, y, color) {
+        this.el = document.createElement("div");
+        this.el.className = "heart-particle";
+        this.el.style.setProperty("--c", color);
+        document.body.appendChild(this.el);
+
+        this.x = x;
+        this.y = y;
+        this.size = Math.random() * 8 + 6;
+        this.vx = (Math.random() - 0.5) * 15 * HEART_SPEED_MULTIPLIER;
+        this.vy = (Math.random() * -10 - 10) * HEART_SPEED_MULTIPLIER;
+        this.rotation = Math.random() * 360;
+        this.rotationSpeed = (Math.random() - 0.5) * 8 * HEART_SPEED_MULTIPLIER;
+        this.gravity = 0.2 * HEART_SPEED_MULTIPLIER;
+        this.life = 100;
+        this.maxLife = 150;
+      }
+
+      update() {
+        this.vy += this.gravity;
+        this.x += this.vx;
+        this.y += this.vy;
+        this.rotation += this.rotationSpeed;
+        this.life--;
+
+        const progress = this.life / this.maxLife;
+        const opacity = Math.min(1, progress * 2);
+        const scale = this.size / 12;
+
+        this.el.style.opacity = opacity;
+        this.el.style.transform = `translate(${this.x}px, ${this.y}px) rotate(${this.rotation}deg) scale(${scale})`;
+      }
+
+      isDead() {
+        return this.life <= 0 || this.y > window.innerHeight + 50;
+      }
+
+      remove() {
+        if (this.el.parentNode) {
+          this.el.parentNode.removeChild(this.el);
+        }
+      }
+    }
+
+    function emitHeartsFromTulip(tulipElement, color, count = 25) {
+      if (audioAllowed) {
+        sparkleSound.currentTime = 0;
+        sparkleSound.play().catch(() => {});
+      }
+
+      const rect = tulipElement.getBoundingClientRect();
+      const x = rect.left + rect.width / 2;
+      const y = rect.top + rect.height / 2;
+
+      for (let i = 0; i < count && heartPool.length < maxHearts; i++) {
+        heartPool.push(new HeartParticle(x, y, color));
+      }
+    }
+
+    function animateHearts() {
+      for (let i = heartPool.length - 1; i >= 0; i--) {
+        const heart = heartPool[i];
+        heart.update();
+        if (heart.isDead()) {
+          heart.remove();
+          heartPool.splice(i, 1);
+        }
+      }
+      requestAnimationFrame(animateHearts);
+    }
+
+    animateHearts();
+
+    setTimeout(() => {
+      intro.style.display = "none";
+      container.style.display = "flex";
+
+      colores.forEach(c => {
+        const btn = document.createElement("button");
+        btn.className = "color-btn";
+        btn.style.backgroundColor = c.top;
+        btn.title = c.nombre;
+        btn.onclick = () => {
+          gradTops.forEach(el => el.setAttribute("stop-color", c.top));
+          gradBottoms.forEach(el => el.setAttribute("stop-color", c.bottom));
+          emitHeartsFromTulip(tulipSvgs[1], c.top, 20);
+        };
+        colorButtons.appendChild(btn);
+      });
+
+      const init = colores[COLOR_INICIAL];
+      gradTops.forEach(el => el.setAttribute("stop-color", init.top));
+      gradBottoms.forEach(el => el.setAttribute("stop-color", init.bottom));
+    }, 3000);
+
+    tulipSvgs.forEach(tulip => {
+      tulip.addEventListener("click", () => {
+        const currentColor = tulip.querySelector(".grad-top").getAttribute("stop-color") || "#ff9ec5";
+        emitHeartsFromTulip(tulip, currentColor, 30);
+        tulip.blur();
+      });
+    });
+  </script>
+</body>
+</html>
