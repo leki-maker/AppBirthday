@@ -123,6 +123,21 @@
     .tulip-single:hover {
       transform: scale(1.1) translateY(-10px);
     }
+    .tulip-single,
+    .tulip-single * {
+        outline: none !important;
+        -webkit-tap-highlight-color: transparent;
+    }
+
+    .tulip-single:focus,
+    .tulip-single:focus-visible {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+
+    .tulip-single:hover {
+      transform: scale(1.1) translateY(-10px);
+    }
 
     .tulip-single.left {
       transform: translateX(-40%) rotate(-25deg);
@@ -374,3 +389,4 @@
   </script>
 </body>
 </html>
+
